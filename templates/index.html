@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fake Account Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Fake Account Detection</h1>
+
+    <form action="/predict" method="post">
+
+      <!-- ✅ Added Username field -->
+      <input type="text" name="username" placeholder="Enter Username" required>
+
+      <input type="number" name="followers" placeholder="Followers count" required>
+      <input type="number" name="following" placeholder="Following count" required>
+      <input type="number" name="posts" placeholder="Posts / statuses count" required>
+      <input type="number" name="age" placeholder="Account age (in days)" required>
+      <button type="submit">Detect</button>
+    </form>
+
+    {% if result %}
+    <div class="result">{{ result }}</div>
+    {% endif %}
+
+    <div class="note">
+      <p>Note: If the model is not trained yet, run 
+        <code>python train_model.py</code> in the project folder first.</p>
+    </div>
+  </div>
+</body>
+</html>
